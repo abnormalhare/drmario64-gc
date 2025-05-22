@@ -1,9 +1,5 @@
-decomp-toolkit Project Template
-===============================
-
-If starting a new GameCube / Wii decompilation project, this repository can be used as a scaffold.
-
-See [decomp-toolkit](https://github.com/encounter/decomp-toolkit) for background on the concept and more information on the tooling used.
+Nintendo Puzzle Collection Decompilation
+========================================
 
 Documentation
 -------------

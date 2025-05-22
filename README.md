@@ -1,4 +1,4 @@
-Dr Mario 64: Nintendo Puzzle Collection
+Dr Mario 64: Nintendo Puzzle Collection<br/>
 [![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![Discord Badge]][discord]
 =============
 

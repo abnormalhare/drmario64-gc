@@ -214,9 +214,8 @@ cflags_runtime = [
     *cflags_base,
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
-    "-gccinc",
     "-common off",
-    "-inline auto",
+    "-inline auto,deferred",
 ]
 
 # REL flags
@@ -226,7 +225,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/1.3.2"
+config.linker_version = "GC/1.2.5"
 
 
 # Helper function for Dolphin libraries
@@ -269,11 +268,27 @@ config.libs = [
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
         "progress_category": "sdk",  # str | List[str]
+        "host": False,
         "objects": [
-            Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+            Object(NonMatching, "Runtime/__va_arg.c"),
+            Object(NonMatching, "Runtime/global_destructor_chain.c"),
+            Object(NonMatching, "Runtime/__mem.c"),
+            Object(NonMatching, "Runtime/New.cp", extra_cflags=["-Cpp_exceptions on"]),
+            Object(NonMatching, "Runtime/NewMore.cp", extra_cflags=["-Cpp_exceptions on", "-RTTI on"]),
+            Object(NonMatching, "Runtime/NMWException.cpp", extra_cflags=["-Cpp_exceptions on"]),
+            Object(NonMatching, "Runtime/runtime.c"),
+            Object(NonMatching, "Runtime/__init_cpp_exceptions.cpp"),
+            Object(NonMatching, "Runtime/Gecko_ExceptionPPC.cpp", extra_cflags=["-Cpp_exceptions on", "-RTTI on"]),
+            Object(NonMatching, "Runtime/GCN_mem_alloc.c"),
         ],
     },
+    DolphinLib(
+        "os",
+        [
+            Object(Matching, "dolphin/os/__start.c"),
+            Object(Matching, "dolphin/os/__ppc_eabi_init.c")
+        ]
+    )
 ]
 
 

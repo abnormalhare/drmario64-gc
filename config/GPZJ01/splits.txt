@@ -11,3 +11,13 @@ Sections:
 	.sdata      type:data align:4
 	.sbss       type:bss align:16
 	.sdata2     type:rodata align:32
+
+Runtime/__mem.c:
+	.init       start:0x80003100 end:0x80003244
+
+dolphin/os/__start.c:
+	.init       start:0x800051EC end:0x80005440
+
+dolphin/os/__ppc_eabi_init.c:
+	.init       start:0x80005440 end:0x80005494
+	.text       start:0x8004A4FC end:0x8004A590

@@ -1,0 +1,11 @@
+#ifndef D56A67E9_D144_4B6E_83BE_B08EC47D4223
+#define D56A67E9_D144_4B6E_83BE_B08EC47D4223
+#ifndef _TYPES_H_
+#define _TYPES_H_
+
+#include "dolphin/types.h"
+
+#endif
+
+
+#endif /* D56A67E9_D144_4B6E_83BE_B08EC47D4223 */

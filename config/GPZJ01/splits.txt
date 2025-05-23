@@ -24,21 +24,11 @@ TRK_MINNOW_DOLPHIN/mem_TRK.c:
 	.init       start:0x80003244 end:0x80003298
 	.text       start:0x80038D10 end:0x80038DCC
 
-TRK_MINNOW_DOLPHIN/__exception.s:
-	.init       start:0x80003298 end:0x800051CC
-
-dolphin/os/__start.c:
-	.init       start:0x800051EC end:0x80005440
-
-dolphin/os/__ppc_eabi_init.c:
-	.init       start:0x80005440 end:0x80005494
-	.text       start:0x8004A4FC end:0x8004A590
-
 dolphin/GBA/GBA.c:
 	.text       start:0x80040A54 end:0x80040CB4
 	.data       start:0x800C28D0 end:0x800C28E0
 	.bss        start:0x8022B620 end:0x8022BB20
-	.sbss       start:0x8022D8B8 end:0x8022D8BC
+	.sbss       start:0x8022D8B8 end:0x8022D8C0
 
 dolphin/GBA/GBAGetProcessStatus.c:
 	.text       start:0x80040CB4 end:0x80040E28
@@ -57,5 +47,15 @@ dolphin/GBA/GBAXfer.c:
 	.text       start:0x80041FD4 end:0x8004230C
 
 dolphin/GBA/GBAKey.c:
-	.text       start:0x8004230C end:0x8004256C
-	.data       start:0x800C2910 end:0x800C2CB6
+	.text       start:0x8004230C end:0x80042574
+	.data       start:0x800C2910 end:0x800C2CB8
+
+TRK_MINNOW_DOLPHIN/__exception.s:
+	.init       start:0x80003298 end:0x800051CC
+
+dolphin/os/__start.c:
+	.init       start:0x800051EC end:0x80005440
+
+dolphin/os/__ppc_eabi_init.c:
+	.init       start:0x80005440 end:0x80005494
+	.text       start:0x8004A4FC end:0x8004A590

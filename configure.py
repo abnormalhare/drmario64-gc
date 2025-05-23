@@ -301,6 +301,18 @@ config.libs = [
             Object(Matching, "dolphin/os/__ppc_eabi_init.c")
         ]
     ),
+    DolphinLib(
+        "gba",
+        [
+            Object(NonMatching, "dolphin/GBA/GBA.c"),
+            Object(NonMatching, "dolphin/GBA/GBAGetProcessStatus.c"),
+            Object(NonMatching, "dolphin/GBA/GBAJoyBoot.c"),
+            Object(NonMatching, "dolphin/GBA/GBARead.c"),
+            Object(NonMatching, "dolphin/GBA/GBAWrite.c"),
+            Object(NonMatching, "dolphin/GBA/GBAXfer.c"),
+            Object(NonMatching, "dolphin/GBA/GBAKey.c"),
+        ],
+    ),
     {
         "lib": "TRK_MINNOW_DOLPHIN",
         "mw_version": "GC/1.2.5",

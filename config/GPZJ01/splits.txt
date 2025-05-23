@@ -12,6 +12,11 @@ Sections:
 	.sbss       type:bss align:16
 	.sdata2     type:rodata align:32
 
+game/main.c:
+	.text       start:0x80006780 end:0x80006CF4
+	.data       start:0x800BDCA0 end:0x800BDD38
+	.bss        start:0x800C6C40 end:0x800C6C68
+
 Runtime/__mem.c:
 	.init       start:0x80003100 end:0x80003244
 

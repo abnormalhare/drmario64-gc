@@ -237,6 +237,11 @@ cflags_trk = [
     "-sdatathreshold 0"
 ]
 
+cflags_game = [
+    *cflags_base,
+    "-use_lmw_stmw off"
+]
+
 config.linker_version = "GC/1.2.5"
 
 
@@ -332,6 +337,15 @@ config.libs = [
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/target_options.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/mslsupp.c"),
         ],
+    },
+    {
+        "lib": "Game",
+        "mw_version": config.linker_version,
+        "cflags": cflags_game,
+        "host": False,
+        "objects": [
+            Object(NonMatching, "game/main.c")
+        ]
     }
 ]
 

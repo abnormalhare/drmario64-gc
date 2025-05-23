@@ -21,3 +21,29 @@ dolphin/os/__start.c:
 dolphin/os/__ppc_eabi_init.c:
 	.init       start:0x80005440 end:0x80005494
 	.text       start:0x8004A4FC end:0x8004A590
+
+dolphin/GBA/GBA.c:
+	.text       start:0x80040A54 end:0x80040CB4
+	.data       start:0x800C28D0 end:0x800C28E0
+	.bss        start:0x8022B620 end:0x8022BB20
+	.sbss       start:0x8022D8B8 end:0x8022D8BC
+
+dolphin/GBA/GBAGetProcessStatus.c:
+	.text       start:0x80040CB4 end:0x80040E28
+
+dolphin/GBA/GBAJoyBoot.c:
+	.text       start:0x80040E28 end:0x80041DB8
+	.data       start:0x800C28E0 end:0x800C2910
+
+dolphin/GBA/GBARead.c:
+	.text       start:0x80041DB8 end:0x80041E7C
+
+dolphin/GBA/GBAWrite.c:
+	.text       start:0x80041E7C end:0x80041FD4
+
+dolphin/GBA/GBAXfer.c:
+	.text       start:0x80041FD4 end:0x8004230C
+
+dolphin/GBA/GBAKey.c:
+	.text       start:0x8004230C end:0x8004256C
+	.data       start:0x800C2910 end:0x800C2CB6

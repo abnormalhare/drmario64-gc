@@ -15,6 +15,13 @@ Sections:
 Runtime/__mem.c:
 	.init       start:0x80003100 end:0x80003244
 
+TRK_MINNOW_DOLPHIN/mem_TRK.c:
+	.init       start:0x80003244 end:0x80003298
+	.text       start:0x80038D10 end:0x80038DCC
+
+TRK_MINNOW_DOLPHIN/__exception.s:
+	.init       start:0x80003298 end:0x800051CC
+
 dolphin/os/__start.c:
 	.init       start:0x800051EC end:0x80005440
 

@@ -225,6 +225,18 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
+cflags_trk = [
+    *cflags_base,
+    "-use_lmw_stmw on",
+    "-str reuse,readonly",
+    "-common off",
+    "-sdata 0",
+    "-sdata2 0",
+    "-inline auto,deferred",
+    "-enum min",
+    "-sdatathreshold 0"
+]
+
 config.linker_version = "GC/1.2.5"
 
 
@@ -288,7 +300,39 @@ config.libs = [
             Object(Matching, "dolphin/os/__start.c"),
             Object(Matching, "dolphin/os/__ppc_eabi_init.c")
         ]
-    )
+    ),
+    {
+        "lib": "TRK_MINNOW_DOLPHIN",
+        "mw_version": "GC/1.2.5",
+        "cflags": cflags_trk,
+        "host": False,
+        "objects": [
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/mainloop.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/nubevent.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/nubinit.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/msg.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/msgbuf.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/serpoll.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/usr_put.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/dispatch.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/msghndlr.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/support.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/mutex_TRK.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/notify.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/flush_cache.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/mem_TRK.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/targimpl.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/targsupp.s"),
+            Object(Matching, "TRK_MINNOW_DOLPHIN/__exception.s"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/dolphin_trk.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/main_TRK.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/targcont.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/target_options.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/mslsupp.c"),
+        ],
+    }
 ]
 
 

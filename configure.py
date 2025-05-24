@@ -239,7 +239,9 @@ cflags_trk = [
 
 cflags_game = [
     *cflags_base,
-    "-use_lmw_stmw off"
+    "-use_lmw_stmw off",
+    "-sdata 0",
+    "-sdata2 0"
 ]
 
 config.linker_version = "GC/1.2.5"

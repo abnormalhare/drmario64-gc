@@ -335,6 +335,13 @@ config.libs = [
             Object(NonMatching, "dolphin/GBA/GBAKey.c"),
         ],
     ),
+    DolphinLib(
+        "pad",
+        [
+            Object(Matching, "dolphin/pad/PadClamp.c"),
+            Object(NonMatching, "dolphin/pad/pad.c"),
+        ],
+    ),
     {
         "lib": "TRK_MINNOW_DOLPHIN",
         "mw_version": "GC/1.1p1",

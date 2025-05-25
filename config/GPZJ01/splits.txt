@@ -77,6 +77,17 @@ dolphin/os/__ppc_eabi_init.c:
 	.init       start:0x80005440 end:0x80005494
 	.text       start:0x8004A4FC end:0x8004A590
 
+dolphin/pad/PadClamp.c:
+	.text       start:0x800566E0 end:0x80056924
+	.rodata     start:0x800BDC90 end:0x800BDC9A
+
+dolphin/pad/pad.c:
+	.text       start:0x80056924 end:0x80058350
+	.data       start:0x800C5F48 end:0x800C5FA0
+	.bss        start:0x8022CD38 end:0x8022CFA8
+	.sdata      start:0x8022D620 end:0x8022D640
+	.sbss       start:0x8022DB78 end:0x8022DBA0
+
 dolphin/ai.c:
 	.text       start:0x80058350 end:0x80058C1C
 	.data       start:0x800C5FA0 end:0x800C5FE8

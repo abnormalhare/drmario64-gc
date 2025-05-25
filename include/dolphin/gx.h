@@ -18,9 +18,11 @@
 #include <dolphin/gx/GXManage.h>
 #include <dolphin/gx/GXPerf.h>
 #include <dolphin/gx/GXPixel.h>
+#include <dolphin/gx/GXPriv.h>
 #include <dolphin/gx/GXTev.h>
 #include <dolphin/gx/GXTexture.h>
 #include <dolphin/gx/GXTransform.h>
+#include <dolphin/gx/GXVerify.h>
 #include <dolphin/gx/GXVert.h>
 
 #endif // _DOLPHIN_GX

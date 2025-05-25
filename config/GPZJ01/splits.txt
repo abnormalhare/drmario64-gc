@@ -20,6 +20,20 @@ game/main.c:
 Runtime/__va_arg.c:
 	.text       start:0x8003767C end:0x80037770
 
+Runtime/global_destructor_chain.c:
+	.text       start:0x80037770 end:0x800377B8
+	.dtors      start:0x8006A868 end:0x8006A86C
+	.sbss       start:0x8022D890 end:0x8022D898
+
+Runtime/runtime.c:
+	.text       start:0x80037978 end:0x80038014
+
+Runtime/__init_cpp_exceptions.cpp:
+	.text       start:0x80038014 end:0x80038090
+	.ctors      start:0x8006A840 end:0x8006A844
+	.dtors      start:0x8006A860 end:0x8006A868
+	.sdata      start:0x8022D560 end:0x8022D564
+
 Runtime/__mem.c:
 	.init       start:0x80003100 end:0x80003244
 
@@ -62,3 +76,15 @@ dolphin/os/__start.c:
 dolphin/os/__ppc_eabi_init.c:
 	.init       start:0x80005440 end:0x80005494
 	.text       start:0x8004A4FC end:0x8004A590
+
+dolphin/ai.c:
+	.text       start:0x80058350 end:0x80058C1C
+	.data       start:0x800C5FA0 end:0x800C5FE8
+	.sdata      start:0x8022D640 end:0x8022D648
+	.sbss       start:0x8022DBA0 end:0x8022DBE0
+
+dolphin/ar/ar.c:
+	.text       start:0x80058C1C end:0x8005A6F8
+	.data       start:0x800C5FE8 end:0x800C6030
+	.sdata      start:0x8022D648 end:0x8022D650
+	.sbss       start:0x8022DBE0 end:0x8022DC00

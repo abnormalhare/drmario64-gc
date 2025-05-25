@@ -197,6 +197,7 @@ cflags_base = [
     "-str reuse",
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
+    "-i include/dolphin",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
@@ -289,18 +290,31 @@ config.libs = [
         "progress_category": "sdk",  # str | List[str]
         "host": False,
         "objects": [
-            Object(NonMatching, "Runtime/__va_arg.c"),
-            Object(NonMatching, "Runtime/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime/__mem.c"),
+            Object(Matching, "Runtime/__va_arg.c"),
+            Object(Matching, "Runtime/global_destructor_chain.c"),
+            Object(Matching, "Runtime/__mem.c"),
             Object(NonMatching, "Runtime/New.cp", extra_cflags=["-Cpp_exceptions on"]),
             Object(NonMatching, "Runtime/NewMore.cp", extra_cflags=["-Cpp_exceptions on", "-RTTI on"]),
             Object(NonMatching, "Runtime/NMWException.cpp", extra_cflags=["-Cpp_exceptions on"]),
             Object(NonMatching, "Runtime/runtime.c"),
-            Object(NonMatching, "Runtime/__init_cpp_exceptions.cpp"),
+            Object(Matching, "Runtime/__init_cpp_exceptions.cpp"),
             Object(NonMatching, "Runtime/Gecko_ExceptionPPC.cpp", extra_cflags=["-Cpp_exceptions on", "-RTTI on"]),
             Object(NonMatching, "Runtime/GCN_mem_alloc.c"),
         ],
     },
+    DolphinLib(
+        "ai",
+        [
+            Object(Matching, "dolphin/ai.c")
+        ]
+    ),
+    DolphinLib(
+        "ar",
+        [
+            Object(Matching, "dolphin/ar/ar.c"),
+            Object(NonMatching, "dolphin/ar/arq.c")
+        ]
+    ),
     DolphinLib(
         "os",
         [

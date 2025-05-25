@@ -3,61 +3,46 @@
 extern s32 lbl_801F9C08[];
 
 u32 OSGetResetCode(void);
+s32 *fn_80006838(const char*);
 void fn_80006D04(s32);
-void fn_80006CF4();
-void fn_80006DD8();
-s32 fn_80012854();
-void fn_800128C4();
-s32 fn_800158C4();
-void fn_800160CC(s32, s32, s32, s32);
-s32 fn_800160FC();
-void fn_80018CD0();
+void fn_80006CF4(void);
+void fn_80006DD8(void);
+void fn_80012448(void);
+s32 fn_80012854(void);
+void fn_800128C4(void);
+s32 fn_800158C4(void);
+void fn_800160CC(const char *, s32, s32, s32);
+s32 *fn_800160FC(void);
+void fn_80018CD0(void);
 void fn_80018D00(int, int);
 void fn_800196A8(int);
-void fn_8001970C();
-void fn_80019D00();
-void fn_8001A22C();
-u32 fn_800489E8();
+void fn_8001970C(void);
+void fn_80019C68(void);
+void fn_80019C78(void);
+void fn_80019D00(void);
+void fn_8001A22C(void);
+u32 fn_800489E8(void);
 
-typedef struct unkStruct2 {
-    char unk[0x28];
-    int unk28;
-    int unk2C;
-    int unk30;
-} unkStruct2;
-
-unkStruct2 lbl_800C6C40;
-const char *lbl_8006A880[] = {
-    "/menu_relsamp.bin",
-    "/Dr_MARIO.rel",
-    "/panepon.rel",
-    "/ycookie.rel",
-};
-const char *lbl_8006A890[] = {
-    "/menu_relsamp.szp",
-    "/Dr_MARIO.szp",
-    "/panepon.szp",
-    "/ycookie.szp",
-};
+s32 lbl_800C6C40[13];
 
 s32 lbl_800BDD38[2] = { 1, 0 };
 
 int main(void) {
     s32 var_r30;
-    unkStruct2* var_r31;
+    s32* var_r31;
 
-    var_r31 = &lbl_800C6C40;
+    var_r31 = lbl_800C6C40;
     
-    var_r31->unk28 = var_r30 = 0;
+    var_r31[10] = var_r30 = 0;
     if ((OSGetResetCode() + 0x80000000) == 0) {
         var_r30 = 1;
     }
-    var_r31->unk2C = var_r30;
+    var_r31[11] = var_r30;
     var_r30 = 0;
-    if ((var_r31->unk2C != 0) && (fn_800489E8() == 1)) {
+    if ((var_r31[11] != 0) && (fn_800489E8() == 1)) {
         var_r30 = 1;
     }
-    var_r31->unk30 = var_r30;
+    var_r31[12] = var_r30;
     fn_800128C4();
     fn_80018CD0();
     fn_80018D00(1, 0);
@@ -70,7 +55,7 @@ int main(void) {
     return 0;
 }
 
-s32 fn_80006838(s32 arg0) {
+s32 *fn_80006838(const char *arg0) {
     s32 var_r31;
 
     fn_800160CC(arg0, 0, 0, 0);
@@ -92,11 +77,26 @@ s32 fn_80006838(s32 arg0) {
             }
             while (1) {}
         } else if (var_r31 != 0) {
-            return 0;
+            return NULL;
         } else {
             return fn_800160FC();
         }
     }
+}
+
+s32 fn_800068EC(void) {
+    s32 i;
+    s32 *temp_r3;
+
+    fn_80019C68();
+    temp_r3 = fn_80006838("/ycookie.szp");
+    for (i = 0; i < 4; i++) {
+        lbl_800C6C40[i] = 0;
+        lbl_800C6C40[i] = temp_r3[i];
+    }
+    fn_80012448();
+    fn_80019C78();
+    return 0;
 }
 
 void fn_80006968(void) {

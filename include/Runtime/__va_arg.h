@@ -14,9 +14,9 @@ typedef struct __va_list_struct {
 typedef _va_list_struct __va_list[1];
 
 #ifdef __cplusplus
-extern "C" void* __va_arg(__va_list*, unsigned char);
+extern "C" void* __va_arg(__va_list*, u8);
 #else
-void* __va_arg(__va_list*, unsigned char);
+void* __va_arg(__va_list*, u8);
 #endif
 
 #ifndef __MWERKS__

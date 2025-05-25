@@ -41,6 +41,22 @@ TRK_MINNOW_DOLPHIN/mem_TRK.c:
 	.init       start:0x80003244 end:0x80003298
 	.text       start:0x80038D10 end:0x80038DCC
 
+TRK_MINNOW_DOLPHIN/flush_cache.c:
+	.text       start:0x8003E9F0 end:0x8003EA28
+
+TRK_MINNOW_DOLPHIN/targimpl.c:
+	.text       start:0x8003EAEC end:0x800400C8
+	.rodata     start:0x800BDC40 end:0x800BDC78
+
+TRK_MINNOW_DOLPHIN/__exception.s:
+	.init       start:0x80003298 end:0x800051CC
+
+TRK_MINNOW_DOLPHIN/dolphin_trk.c:
+	.init       start:0x800051CC end:0x800051EC
+	.text       start:0x800400C8 end:0x80040308
+	.data       start:0x800C2870 end:0x800C28B0
+	.bss        start:0x8022B610 end:0x8022B618
+
 dolphin/GBA/GBA.c:
 	.text       start:0x80040A54 end:0x80040CB4
 	.data       start:0x800C28D0 end:0x800C28E0
@@ -66,9 +82,6 @@ dolphin/GBA/GBAXfer.c:
 dolphin/GBA/GBAKey.c:
 	.text       start:0x8004230C end:0x80042574
 	.data       start:0x800C2910 end:0x800C2CB8
-
-TRK_MINNOW_DOLPHIN/__exception.s:
-	.init       start:0x80003298 end:0x800051CC
 
 dolphin/os/__start.c:
 	.init       start:0x800051EC end:0x80005440
@@ -99,3 +112,23 @@ dolphin/ar/ar.c:
 	.data       start:0x800C5FE8 end:0x800C6030
 	.sdata      start:0x8022D648 end:0x8022D650
 	.sbss       start:0x8022DBE0 end:0x8022DC00
+
+dolphin/ar/arq.c:
+	.text       start:0x8005A6F8 end:0x8005AA9C
+	.data       start:0x800C6030 end:0x800C6078
+	.sdata      start:0x8022D650 end:0x8022D658
+	.sbss       start:0x8022DC00 end:0x8022DC28
+
+dolphin/dsp/dsp.c:
+	.text       start:0x8005AA9C end:0x8005AC1C
+	.data       start:0x800C6078 end:0x800C60F8
+	.sdata      start:0x8022D658 end:0x8022D660
+	.sbss       start:0x8022DC28 end:0x8022DC30
+
+dolphin/dsp/dsp_debug.c:
+	.text       start:0x8005AC1C end:0x8005AC6C
+
+dolphin/dsp/dsp_task.c:
+	.text       start:0x8005AC6C end:0x8005B4F0
+	.data       start:0x800C60F8 end:0x800C6208
+	.sbss       start:0x8022DC30 end:0x8022DC48

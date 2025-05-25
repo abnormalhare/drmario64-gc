@@ -230,10 +230,11 @@ cflags_trk = [
     *cflags_base,
     "-use_lmw_stmw on",
     "-str reuse,readonly",
+    "-pool off",
     "-common off",
     "-sdata 0",
     "-sdata2 0",
-    "-inline auto,deferred",
+    "-inline off",
     "-enum min",
     "-sdatathreshold 0"
 ]
@@ -312,7 +313,15 @@ config.libs = [
         "ar",
         [
             Object(Matching, "dolphin/ar/ar.c"),
-            Object(NonMatching, "dolphin/ar/arq.c")
+            Object(Matching, "dolphin/ar/arq.c")
+        ]
+    ),
+    DolphinLib(
+        "dsp",
+        [
+            Object(Matching, "dolphin/dsp/dsp.c"),
+            Object(Matching, "dolphin/dsp/dsp_debug.c"),
+            Object(Matching, "dolphin/dsp/dsp_task.c")
         ]
     ),
     DolphinLib(
@@ -343,7 +352,7 @@ config.libs = [
     ),
     {
         "lib": "TRK_MINNOW_DOLPHIN",
-        "mw_version": "GC/1.2.5",
+        "mw_version": "GC/1.1p1",
         "cflags": cflags_trk,
         "host": False,
         "objects": [
@@ -359,12 +368,12 @@ config.libs = [
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/support.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/mutex_TRK.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/notify.c"),
-            Object(NonMatching, "TRK_MINNOW_DOLPHIN/flush_cache.c"),
+            Object(Matching, "TRK_MINNOW_DOLPHIN/flush_cache.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/mem_TRK.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/targimpl.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/targsupp.s"),
             Object(Matching, "TRK_MINNOW_DOLPHIN/__exception.s"),
-            Object(NonMatching, "TRK_MINNOW_DOLPHIN/dolphin_trk.c"),
+            Object(Matching, "TRK_MINNOW_DOLPHIN/dolphin_trk.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/main_TRK.c"),
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c"),

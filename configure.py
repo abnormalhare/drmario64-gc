@@ -313,7 +313,15 @@ config.libs = [
         "ar",
         [
             Object(Matching, "dolphin/ar/ar.c"),
-            Object(NonMatching, "dolphin/ar/arq.c")
+            Object(Matching, "dolphin/ar/arq.c")
+        ]
+    ),
+    DolphinLib(
+        "dsp",
+        [
+            Object(Matching, "dolphin/dsp/dsp.c"),
+            Object(Matching, "dolphin/dsp/dsp_debug.c"),
+            Object(Matching, "dolphin/dsp/dsp_task.c")
         ]
     ),
     DolphinLib(

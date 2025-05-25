@@ -230,6 +230,7 @@ cflags_trk = [
     *cflags_base,
     "-use_lmw_stmw on",
     "-str reuse,readonly",
+    "-pool off",
     "-common off",
     "-sdata 0",
     "-sdata2 0",

@@ -352,6 +352,19 @@ config.libs = [
         ]
     ),
     DolphinLib(
+        "dvd",
+        [
+            Object(NonMatching, "dolphin/dvd/dvdlow.c"),
+            Object(NonMatching, "dolphin/dvd/dvdfs.c"),
+            Object(NonMatching, "dolphin/dvd/dvd.c"),
+            Object(Matching, "dolphin/dvd/dvdqueue.c"),
+            Object(Matching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/dvd/dvdidutils.c"),
+            Object(NonMatching, "dolphin/dvd/dvdfatal.c"),
+            Object(Matching, "dolphin/dvd/fstload.c"),
+        ],
+    ),
+    DolphinLib(
         "gba",
         [
             Object(NonMatching, "dolphin/GBA/GBA.c"),

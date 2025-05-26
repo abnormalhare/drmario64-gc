@@ -97,7 +97,7 @@ dolphin/pad/PadClamp.c:
 dolphin/pad/pad.c:
 	.text       start:0x80056924 end:0x80058350
 	.data       start:0x800C5F48 end:0x800C5FA0
-	.bss        start:0x8022CD38 end:0x8022CFA8
+	.bss        start:0x8022CD38 end:0x8022CD88
 	.sdata      start:0x8022D620 end:0x8022D640
 	.sbss       start:0x8022DB78 end:0x8022DBA0
 
@@ -132,3 +132,21 @@ dolphin/dsp/dsp_task.c:
 	.text       start:0x8005AC6C end:0x8005B4F0
 	.data       start:0x800C60F8 end:0x800C6208
 	.sbss       start:0x8022DC30 end:0x8022DC48
+
+dolphin/card/CARDBios.c:
+	.text       start:0x8005B4F0 end:0x8005C7A4
+	.data       start:0x800C6238 end:0x800C6290
+	.bss        start:0x8022CD88 end:0x8022CFC8
+	.sdata      start:0x8022D660 end:0x8022D668
+	.sbss       start:0x8022DC48 end:0x8022DC50
+
+dolphin/card/CARDUnlock.c:
+	.text       start:0x8005C7A4 end:0x8005DA04
+	.data       start:0x800C62A0 end:0x800C6400
+	.sdata      start:0x8022D668 end:0x8022D670
+
+dolphin/card/CARDRdwr.c:
+	.text       start:0x8005DA04 end:0x8005DC84
+
+dolphin/card/CARDBlock.c:
+	.text       start:0x8005DC84 end:0x8005E088

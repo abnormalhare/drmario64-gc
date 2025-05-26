@@ -168,4 +168,20 @@ dolphin/card/CARDOpen.c:
 	.text       start:0x80060504 end:0x80060958
 
 dolphin/card/CARDCreate.c:
-	.text       start:0x80060958 end:0x80060CA8
+	.text       start:0x80060958 end:0x80060CF0
+
+dolphin/card/CARDRead.c:
+	.text       start:0x80060CF0 end:0x80061168
+
+dolphin/card/CARDWrite.c:
+	.text       start:0x80061168 end:0x800614E4
+
+dolphin/card/CARDDelete.c:
+	.text       start:0x800614E4 end:0x800616E0
+
+dolphin/card/CARDStat.c:
+	.text       start:0x800616E0 end:0x80061BC0
+
+dolphin/card/CARDNet.c:
+	.text       start:0x80061BC0 end:0x80061C3C
+	.sdata      start:0x8022D670 end:0x8022D678

@@ -166,3 +166,6 @@ dolphin/card/CARDFormat.c:
 
 dolphin/card/CARDOpen.c:
 	.text       start:0x80060504 end:0x80060958
+
+dolphin/card/CARDCreate.c:
+	.text       start:0x80060958 end:0x80060CA8

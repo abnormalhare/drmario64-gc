@@ -142,7 +142,7 @@ s32 CARDFreeBlocks(s32 chan, s32* byteNotUsed, s32* filesNotUsed);
 s32 CARDGetAttributes(s32 chan, s32 fileNo, u8* attr);
 s32 CARDGetEncoding(s32 chan, u16* encode);
 s32 CARDGetMemSize(s32 chan, u16* size);
-s32 CARDGetResultCode(s32 chan);
+static s32 CARDGetResultCode(s32 chan);
 s32 CARDGetSectorSize(s32 chan, u32* size);
 s32 CARDGetSerialNo(s32 chan, u64* serialNo);
 s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat);

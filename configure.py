@@ -243,7 +243,8 @@ cflags_game = [
     *cflags_base,
     "-use_lmw_stmw off",
     "-sdata 0",
-    "-sdata2 0"
+    "-sdata2 0",
+    "-inline off"
 ]
 
 config.linker_version = "GC/1.2.5"
@@ -304,6 +305,13 @@ config.libs = [
         ],
     },
     DolphinLib(
+        "pad",
+        [
+            Object(Matching, "dolphin/pad/PadClamp.c"),
+            Object(NonMatching, "dolphin/pad/pad.c"),
+        ],
+    ),
+    DolphinLib(
         "ai",
         [
             Object(Matching, "dolphin/ai.c")
@@ -345,6 +353,26 @@ config.libs = [
         ],
     ),
     DolphinLib(
+        "gx",
+        [
+            Object(NonMatching, "dolphin/gx/GXInit.c"),
+            Object(NonMatching, "dolphin/gx/GXFifo.c"),
+            Object(NonMatching, "dolphin/gx/GXAttr.c"),
+            Object(NonMatching, "dolphin/gx/GXMisc.c"),
+            Object(NonMatching, "dolphin/gx/GXGeometry.c"),
+            Object(NonMatching, "dolphin/gx/GXFrameBuf.c"),
+            Object(NonMatching, "dolphin/gx/GXLight.c"),
+            Object(NonMatching, "dolphin/gx/GXTexture.c"),
+            Object(NonMatching, "dolphin/gx/GXBump.c"),
+            Object(NonMatching, "dolphin/gx/GXTev.c"),
+            Object(NonMatching, "dolphin/gx/GXPixel.c"),
+            Object(NonMatching, "dolphin/gx/GXStubs.c"),
+            Object(NonMatching, "dolphin/gx/GXDisplayList.c"),
+            Object(NonMatching, "dolphin/gx/GXTransform.c"),
+            Object(NonMatching, "dolphin/gx/GXPerf.c"),
+        ],
+    ),
+    DolphinLib(
         "os",
         [
             Object(Matching, "dolphin/os/__start.c"),
@@ -364,11 +392,10 @@ config.libs = [
         ],
     ),
     DolphinLib(
-        "pad",
+        "amcstubs",
         [
-            Object(Matching, "dolphin/pad/PadClamp.c"),
-            Object(NonMatching, "dolphin/pad/pad.c"),
-        ],
+            Object(Matching, "dolphin/amcstubs/AmcExi2Stubs.c", extra_cflags=["-inline auto,deferred"])
+        ]
     ),
     {
         "lib": "TRK_MINNOW_DOLPHIN",

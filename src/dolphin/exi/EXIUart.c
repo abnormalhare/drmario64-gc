@@ -9,7 +9,7 @@ static u32 Dev;
 static u32 Enabled = 0;
 static u32 BarnacleEnabled = 0;
 
-static BOOL ProbeBarnacle(s32 chan, u32 dev, u32 *revision)
+inline static BOOL ProbeBarnacle(s32 chan, u32 dev, u32 *revision)
 {
     BOOL err;
     u32 cmd;
@@ -44,7 +44,7 @@ static BOOL ProbeBarnacle(s32 chan, u32 dev, u32 *revision)
     return (*revision != 0xFFFFFFFF) ? TRUE : FALSE;
 }
 
-void __OSEnableBarnacle(s32 chan, u32 dev)
+inline void __OSEnableBarnacle(s32 chan, u32 dev)
 {
     u32 id;
 
@@ -106,7 +106,7 @@ u32 ReadUARTN(void *bytes, unsigned long length)
     return 4;
 }
 
-static int QueueLength(void)
+inline static int QueueLength(void)
 {
     u32 cmd;
 
@@ -127,19 +127,24 @@ static int QueueLength(void)
 u32 WriteUARTN(const void *buf, unsigned long len)
 {
     u32 cmd;
+    BOOL inter;
     int qLen;
+    u32 error;
     long xLen;
     char *ptr;
     BOOL locked;
-    u32 error;
 
     if (Enabled != EXI_MAGIC)
         return 2;
 
+    inter = OSDisableInterrupts();
+
     locked = EXILock(Chan, Dev, 0);
     if (!locked) {
+        OSRestoreInterrupts(inter);
         return 0;
     }
+
 
     for (ptr = (char *)buf; ptr - buf < len; ptr++) {
         if (*ptr == '\n')
@@ -180,5 +185,6 @@ u32 WriteUARTN(const void *buf, unsigned long len)
     }
 
     EXIUnlock(Chan);
+    locked = OSRestoreInterrupts(inter);
     return error;
 }

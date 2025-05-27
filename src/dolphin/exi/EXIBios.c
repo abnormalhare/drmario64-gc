@@ -233,10 +233,11 @@ u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext)
 
 EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback)
 {
-    EXIControl *exi = &Ecb[chan];
+    EXIControl *exi;
     EXICallback prev;
     BOOL enabled;
 
+    exi = &Ecb[chan];
     enabled = OSDisableInterrupts();
     prev = exi->exiCallback;
     exi->exiCallback = exiCallback;

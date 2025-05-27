@@ -283,14 +283,19 @@ cflags_game = [
     "-inline off"
 ]
 
+cflags_dolphin = [
+    *cflags_base
+]
+
 config.linker_version = "GC/1.2.5"
 
 
 # Helper function for Dolphin libraries
-def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def DolphinLib(lib_name: str, objects: List[Object], mw_version = None) -> Dict[str, Any]:
+    mw_version = mw_version or "GC/1.2.5n"
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.2.5n",
+        "mw_version": mw_version,
         "cflags": cflags_base,
         "progress_category": "sdk",
         "objects": objects,
@@ -440,7 +445,7 @@ config.libs = [
         "exi",
         [
             Object(NonMatching, "dolphin/exi/EXIBios.c"),
-            Object(NonMatching, "dolphin/exi/EXIUart.c"),
+            Object(Matching, "dolphin/exi/EXIUart.c"),
         ],
     ),
     DolphinLib(

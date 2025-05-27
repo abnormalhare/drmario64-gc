@@ -202,6 +202,7 @@ cflags_base = [
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
+    "-DMUSY_TARGET=MUSY_TARGET_DOLPHIN",
 ]
 
 # Debug flags
@@ -294,7 +295,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-def MusyX(objects, mw_version="GC/1.3.2", debug=False, major=1, minor=5, patch=4):
+def MusyX(objects, mw_version="GC/1.2.5", debug=False, major=1, minor=5, patch=4):
     cflags = cflags_musyx if not debug else cflags_musyx_debug
     return {
         "lib": "musyx",
@@ -314,7 +315,7 @@ def MusyX(objects, mw_version="GC/1.3.2", debug=False, major=1, minor=5, patch=4
 def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.3.2",
+        "mw_version": "GC/1.2.5",
         "cflags": cflags_rel,
         "progress_category": "game",
         "objects": objects,
@@ -395,13 +396,6 @@ config.libs = [
         ],
     ),
     DolphinLib(
-        "os",
-        [
-            Object(Matching, "dolphin/os/__start.c"),
-            Object(Matching, "dolphin/os/__ppc_eabi_init.c")
-        ]
-    ),
-    DolphinLib(
         "dvd",
         [
             Object(NonMatching, "dolphin/dvd/dvdlow.c"),
@@ -412,6 +406,13 @@ config.libs = [
             Object(Matching, "dolphin/dvd/dvdidutils.c"),
             Object(NonMatching, "dolphin/dvd/dvdfatal.c"),
             Object(Matching, "dolphin/dvd/fstload.c"),
+        ],
+    ),
+    DolphinLib(
+        "exi",
+        [
+            Object(NonMatching, "dolphin/exi/EXIBios.c"),
+            Object(NonMatching, "dolphin/exi/EXIUart.c"),
         ],
     ),
     DolphinLib(
@@ -427,10 +428,17 @@ config.libs = [
         ],
     ),
     DolphinLib(
+        "os",
+        [
+            Object(Matching, "dolphin/os/__start.c"),
+            Object(Matching, "dolphin/os/__ppc_eabi_init.c")
+        ]
+    ),
+    DolphinLib(
         "pad",
         [
             Object(Matching, "dolphin/pad/PadClamp.c"),
-            Object(NonMatching, "dolphin/pad/pad.c"),
+            Object(Matching, "dolphin/pad/pad.c"),
         ],
     ),
     {

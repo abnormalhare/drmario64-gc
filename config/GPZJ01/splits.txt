@@ -17,6 +17,12 @@ game/main.c:
 	.data       start:0x800BDCA0 end:0x800BDD40
 	.bss        start:0x800C6C40 end:0x800C6C68
 
+musyx/runtime/StdReverb/reverb.c:
+	extab       start:0x80005C50 end:0x80005C68
+	extabindex  start:0x80006718 end:0x8000673C
+	.text       start:0x80035FC0 end:0x80036D04
+	.sdata2     start:0x8022DE70 end:0x8022DEA4
+
 Runtime/__va_arg.c:
 	.text       start:0x8003767C end:0x80037770
 
@@ -89,6 +95,14 @@ dolphin/os/__start.c:
 dolphin/os/__ppc_eabi_init.c:
 	.init       start:0x80005440 end:0x80005494
 	.text       start:0x8004A4FC end:0x8004A590
+
+dolphin/exi/EXIBios.c:
+	.text       start:0x8004A590 end:0x8004BEFC
+	.bss        start:0x8022C630 end:0x8022C6F0
+
+dolphin/exi/EXIUart.c:
+	.text       start:0x8004BEFC end:0x8004C190
+	.sbss       start:0x8022D988 end:0x8022D998
 
 dolphin/dvd/dvdlow.c:
 	.text       start:0x8004E3A0 end:0x8004F1E0

@@ -198,9 +198,11 @@ cflags_base = [
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
     "-i include/dolphin",
+    "-i extern/musyx/include",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
+    "-DMUSY_TARGET=MUSY_TARGET_DOLPHIN",
 ]
 
 # Debug flags
@@ -217,6 +219,40 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-common off",
     "-inline auto,deferred",
+]
+
+cflags_musyx = [
+    "-proc gekko",
+    "-nodefaults",
+    "-nosyspath",
+    "-i include",
+    "-i extern/musyx/include",
+    "-inline auto",
+    "-O4,p",
+    "-fp hard",
+    "-enum int",
+    "-Cpp_exceptions off",
+    "-str reuse,pool,readonly",
+    "-fp_contract off",
+    "-DMUSY_TARGET=MUSY_TARGET_DOLPHIN",
+    "-sym on"
+]
+
+cflags_musyx_debug = [
+    "-proc gecko",
+    "-fp hard",
+    "-nodefaults",
+    "-nosyspath",
+    "-i include",
+    "-i extern/musyx/include",
+    "-i libc",
+    "-g",
+    "-sym on",
+    "-D_DEBUG=1",
+    "-fp hard",
+    "-enum int",
+    "-Cpp_exceptions off",
+    "-DMUSY_TARGET=MUSY_TARGET_DOLPHIN",
 ]
 
 # REL flags
@@ -260,12 +296,27 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+def MusyX(objects, mw_version="GC/1.2.5", debug=False, major=1, minor=5, patch=4):
+    cflags = cflags_musyx if not debug else cflags_musyx_debug
+    return {
+        "lib": "musyx",
+        "mw_version": mw_version,
+        "src_dir": "extern/musyx/src",
+        "host": False,
+        "cflags": [
+            *cflags,
+            f"-DMUSY_VERSION_MAJOR={major}",
+            f"-DMUSY_VERSION_MINOR={minor}",
+            f"-DMUSY_VERSION_PATCH={patch}",
+        ],
+        "objects": objects,
+    }
 
 # Helper function for REL script objects
 def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.3.2",
+        "mw_version": "GC/1.2.5",
         "cflags": cflags_rel,
         "progress_category": "game",
         "objects": objects,
@@ -373,11 +424,24 @@ config.libs = [
         ],
     ),
     DolphinLib(
-        "os",
+        "dvd",
         [
-            Object(Matching, "dolphin/os/__start.c"),
-            Object(Matching, "dolphin/os/__ppc_eabi_init.c")
-        ]
+            Object(NonMatching, "dolphin/dvd/dvdlow.c"),
+            Object(NonMatching, "dolphin/dvd/dvdfs.c"),
+            Object(NonMatching, "dolphin/dvd/dvd.c"),
+            Object(Matching, "dolphin/dvd/dvdqueue.c"),
+            Object(Matching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/dvd/dvdidutils.c"),
+            Object(NonMatching, "dolphin/dvd/dvdfatal.c"),
+            Object(Matching, "dolphin/dvd/fstload.c"),
+        ],
+    ),
+    DolphinLib(
+        "exi",
+        [
+            Object(NonMatching, "dolphin/exi/EXIBios.c"),
+            Object(NonMatching, "dolphin/exi/EXIUart.c"),
+        ],
     ),
     DolphinLib(
         "gba",
@@ -395,6 +459,13 @@ config.libs = [
         "amcstubs",
         [
             Object(Matching, "dolphin/amcstubs/AmcExi2Stubs.c", extra_cflags=["-inline auto,deferred"])
+        ]
+    ),
+    DolphinLib(
+        "os",
+        [
+            Object(Matching, "dolphin/os/__start.c"),
+            Object(Matching, "dolphin/os/__ppc_eabi_init.c")
         ]
     ),
     {
@@ -429,6 +500,41 @@ config.libs = [
             Object(NonMatching, "TRK_MINNOW_DOLPHIN/mslsupp.c"),
         ],
     },
+    MusyX(
+        objects={
+            Object(NonMatching, "musyx/runtime/seq.c"),
+            Object(NonMatching, "musyx/runtime/synth.c"),
+            Object(NonMatching, "musyx/runtime/seq_api.c"),
+            Object(NonMatching, "musyx/runtime/snd_synthapi.c"),
+            Object(NonMatching, "musyx/runtime/stream.c"),
+            Object(NonMatching, "musyx/runtime/synthdata.c"),
+            Object(NonMatching, "musyx/runtime/synthmacros.c"),
+            Object(NonMatching, "musyx/runtime/synthvoice.c"),
+            Object(NonMatching, "musyx/runtime/synth_ac.c"),
+            Object(NonMatching, "musyx/runtime/synth_dbtab.c"),
+            Object(NonMatching, "musyx/runtime/synth_adsr.c"),
+            Object(NonMatching, "musyx/runtime/synth_vsamples.c"),
+            Object(NonMatching, "musyx/runtime/s_data.c"),
+            Object(NonMatching, "musyx/runtime/hw_dspctrl.c"),
+            Object(NonMatching, "musyx/runtime/hw_volconv.c"),
+            Object(NonMatching, "musyx/runtime/snd3d.c"),
+            Object(NonMatching, "musyx/runtime/snd_init.c"),
+            Object(NonMatching, "musyx/runtime/snd_math.c"),
+            Object(NonMatching, "musyx/runtime/snd_midictrl.c"),
+            Object(NonMatching, "musyx/runtime/snd_service.c"),
+            Object(NonMatching, "musyx/runtime/hardware.c"),
+            Object(NonMatching, "musyx/runtime/dsp_import.c"),
+            Object(NonMatching, "musyx/runtime/hw_aramdma.c"),
+            Object(NonMatching, "musyx/runtime/hw_dolphin.c"),
+            Object(NonMatching, "musyx/runtime/hw_memory.c"),
+            Object(NonMatching, "musyx/runtime/CheapReverb/creverb_fx.c"),
+            Object(NonMatching, "musyx/runtime/CheapReverb/creverb.c"),
+            Object(NonMatching, "musyx/runtime/StdReverb/reverb_fx.c"),
+            Object(NonMatching, "musyx/runtime/StdReverb/reverb.c"),
+            Object(NonMatching, "musyx/runtime/Delay/delay_fx.c"),
+            Object(NonMatching, "musyx/runtime/Chorus/chorus_fx.c"),
+        }
+    ),
     {
         "lib": "Game",
         "mw_version": config.linker_version,

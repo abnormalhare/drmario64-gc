@@ -17,6 +17,12 @@ game/main.c:
 	.data       start:0x800BDCA0 end:0x800BDD40
 	.bss        start:0x800C6C40 end:0x800CAF90
 
+musyx/runtime/StdReverb/reverb.c:
+	extab       start:0x80005C50 end:0x80005C68
+	extabindex  start:0x80006718 end:0x8000673C
+	.text       start:0x80035FC0 end:0x80036D04
+	.sdata2     start:0x8022DE70 end:0x8022DEA4
+
 Runtime/__va_arg.c:
 	.text       start:0x8003767C end:0x80037770
 
@@ -89,6 +95,55 @@ dolphin/os/__start.c:
 dolphin/os/__ppc_eabi_init.c:
 	.init       start:0x80005440 end:0x80005494
 	.text       start:0x8004A4FC end:0x8004A590
+
+dolphin/exi/EXIBios.c:
+	.text       start:0x8004A590 end:0x8004BEFC
+	.bss        start:0x8022C630 end:0x8022C6F0
+
+dolphin/exi/EXIUart.c:
+	.text       start:0x8004BEFC end:0x8004C190
+	.sbss       start:0x8022D988 end:0x8022D998
+
+dolphin/dvd/dvdlow.c:
+	.text       start:0x8004E3A0 end:0x8004F1E0
+	.bss        start:0x8022C8F0 end:0x8022C9C0
+	.sdata      start:0x8022D5C8 end:0x8022D5D0
+	.sbss       start:0x8022D9B8 end:0x8022DA00
+
+dolphin/dvd/dvdfs.c:
+	.text       start:0x8004F1E0 end:0x8004FA54
+	.data       start:0x800C48D8 end:0x800C4A40
+	.sdata      start:0x8022D5D0 end:0x8022D5D8
+	.sbss       start:0x8022DA00 end:0x8022DA20
+
+dolphin/dvd/dvd.c:
+	.text       start:0x8004FA54 end:0x800522B4
+	.data       start:0x800C4A40 end:0x800C4BC0
+	.bss        start:0x8022C9C0 end:0x8022CA58
+	.sdata      start:0x8022D5D8 end:0x8022D5F0
+	.sbss       start:0x8022DA20 end:0x8022DA70
+
+dolphin/dvd/dvdqueue.c:
+	.text       start:0x800522B4 end:0x800524AC
+	.bss        start:0x8022CA58 end:0x8022CA78
+
+dolphin/dvd/dvderror.c:
+	.text       start:0x800524AC end:0x80052644
+	.data       start:0x800C4BC0 end:0x800C4C08
+
+dolphin/dvd/dvdidutils.c:
+	.text       start:0x80052644 end:0x8005273C
+
+dolphin/dvd/dvdfatal.c:
+	.text       start:0x8005273C end:0x8005276C
+	.sbss       start:0x8022DA70 end:0x8022DA78
+
+dolphin/dvd/fstload.c:
+	.text       start:0x8005276C end:0x800529AC
+	.data       start:0x800C4C08 end:0x800C4C78
+	.bss        start:0x8022CA78 end:0x8022CAE8
+	.sdata      start:0x8022D5F0 end:0x8022D600
+	.sbss       start:0x8022DA78 end:0x8022DA88
 
 dolphin/pad/PadClamp.c:
 	.text       start:0x800566E0 end:0x80056924
